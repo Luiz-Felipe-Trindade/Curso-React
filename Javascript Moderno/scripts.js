@@ -21,3 +21,16 @@ const longArrowSum = (a, b) => {
 
 console.log(sum(4, 5));
 console.log(arrowSum(4, 5));
+
+// Objects
+
+const people1 = new Object();
+people1.name = 'Luiz';
+people1.lastName = 'Trindade';
+
+//is equal to:
+
+const people2 = {
+    name: "Luiz",
+    lastName: "Trindade"
+};
