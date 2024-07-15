@@ -1,0 +1,15 @@
+.StartScreen {
+    text-align: center;
+    justify-content: center;
+    font-family: helvetica;
+    font-size: x-large;
+
+}
+h1 {
+    font-size: 3.5em;
+    margin-bottom: 1em;
+}
+p {
+    color: yellow
+}
+
