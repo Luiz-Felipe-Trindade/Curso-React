@@ -6,9 +6,13 @@ export const useFetch = (url) => {
   const [config, setConfig] = useState(null);
   const [method, setMethod] = useState(null);
   const [callFetch, setCallFetch] = useState(false);
+  const [itemId, setItemId] = useState(null);
 
+  const [loading, setLoading] = useState(false);
+
+  const [error, setError] = useState(null);
   const httpConfig = (data, method) => {
-    if (method == "POST") {
+    if (method === "POST") {
       setConfig({
         method,
         headers: {
@@ -18,32 +22,58 @@ export const useFetch = (url) => {
       });
     }
     setMethod(method);
+    if (method === "DELETE") {
+      setConfig({
+        method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      setMethod(method);
+      setItemId(data);
+    }
   };
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(url);
+      setLoading(true);
 
-      const json = await res.json();
+      try {
+        const res = await fetch(url);
 
-      setData(json);
+        const json = await res.json();
+
+        setData(json);
+      } catch (error) {
+        console.log(error.message);
+
+        setError("Houve um erro no carregamento dos dados!");
+      }
+      setLoading(false);
     };
     fetchData();
   }, [url, callFetch]);
 
   useEffect(() => {
     const httpRequest = async () => {
+      let json;
       if (method === "POST") {
         let fetchOptions = [url, config];
 
         const res = await fetch(...fetchOptions);
 
-        const json = await res.json();
-
-        setCallFetch(json);
+        json = await res.json();
       }
+      if (method === "DELETE") {
+        const deleteUrl = `${url}/${itemId}`;
+
+        const res = await fetch(deleteUrl, config);
+        json = await res.json();
+      }
+      setCallFetch(json);
     };
     httpRequest();
   }, [config, method, url]);
 
-  return { data, httpConfig };
+  return { data, httpConfig, loading, error };
 };

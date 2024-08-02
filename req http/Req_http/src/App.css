@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+.del-button {
+  margin: 0px 20px 5px 20px;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

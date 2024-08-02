@@ -9,7 +9,7 @@ const url = "http://localhost:3000/products";
 function App() {
   const [products, setProducts] = useState([]);
 
-  const { data: items, httpConfig } = useFetch(url);
+  const { data: items, httpConfig, loading, error } = useFetch(url);
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -35,6 +35,9 @@ function App() {
     setName("");
     setPrice("");
   };
+  const handleRemove = (id) => {
+    httpConfig(id, "DELETE");
+  };
   // useEffect(() => {
   //   async function fetchData() {
   //     const res = await fetch(url);
@@ -49,14 +52,25 @@ function App() {
     <>
       <div>
         <h1>Lista de Produtos</h1>
-        <ul>
-          {items &&
-            items.map((product) => (
-              <li key={product.id}>
-                {product.name} - R${product.price}
-              </li>
-            ))}
-        </ul>
+        {loading && <p>Carrengando...</p>}
+        {!loading && (
+          <ul>
+            {items &&
+              items.map((product) => (
+                <li key={product.id}>
+                  {product.name} - R${product.price}
+                  <button
+                    className="del-button"
+                    onClick={() => {
+                      handleRemove(product.id);
+                    }}
+                  >
+                    X
+                  </button>
+                </li>
+              ))}
+          </ul>
+        )}
         <form onSubmit={handleSubmit} className="add-product">
           <label>
             Nome:
@@ -78,7 +92,11 @@ function App() {
               }}
             />
           </label>
-          <input type="submit" name="submit" value="criar" />
+          {loading && (
+            <input type="submit" name="submit" disabled value="Aguarde" />
+          )}
+
+          {!loading && <input type="submit" name="submit" value="criar" />}
         </form>
       </div>
     </>
