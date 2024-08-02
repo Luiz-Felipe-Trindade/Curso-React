@@ -1,0 +1,19 @@
+{
+    "products": [
+      {
+        "id": "6f80",
+        "name": "calca azul",
+        "price": "100"
+      },
+      {
+        "id": "35f3",
+        "name": "oculos",
+        "price": "70"
+      },
+      {
+        "id": "2e76",
+        "name": "camisa",
+        "price": "50"
+      }
+    ]
+  }
