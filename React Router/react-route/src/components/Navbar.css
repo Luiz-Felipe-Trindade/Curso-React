@@ -1,5 +1,18 @@
-nav a {
+nav a{
     margin: 0px 15px;
-    padding: 0px 10px;
-    text-align: center;
+    padding: 5px 10px;
+    justify-content: center;
+    text-decoration: none;
+    background-color: rgb(206, 202, 202);
+    color: black;
+    border-color: black;
+    border-radius: 5px;
+
+}
+nav a:hover {
+    background-color: gray;
+}
+nav {
+    display: flex;
+    justify-content: center;
 }

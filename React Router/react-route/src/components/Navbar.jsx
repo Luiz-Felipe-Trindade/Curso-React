@@ -1,7 +1,10 @@
-import React from "react";
+// Styles
 import "./Navbar.css";
+
+//React
 import { Link } from "react-router-dom";
 
+// 2- Links com react router
 const Navbar = () => {
   return (
     <nav>
