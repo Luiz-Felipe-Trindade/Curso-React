@@ -1,5 +1,5 @@
 nav a{
-    margin: 0px 15px;
+    margin: 5px 15px;
     padding: 5px 10px;
     justify-content: center;
     text-decoration: none;
@@ -15,4 +15,9 @@ nav a:hover {
 nav {
     display: flex;
     justify-content: center;
+}
+
+.active {
+    background-color: rgb(129, 129, 129);
+
 }

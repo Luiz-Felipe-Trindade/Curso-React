@@ -1,23 +1,16 @@
-// React
-import { Link } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 
-// Hooks
 import { useFetch } from "../hooks/useFetch";
 
-// Style
-import "./Home.css";
-import Products from "./Products";
+const Search = () => {
+  const [searchParams] = useSearchParams();
+  const url = "http://localhost:3000/products?" + searchParams;
 
-const Home = () => {
-  /* 3- Carregamento de dados */
-
-  const url = "http://localhost:3000/products";
   const { data: items, loading, error } = useFetch(url);
 
   return (
     <div>
-      <h1>Produtos</h1>
-      {error && <p>{error}</p>}
+      <h1>Resultados disponíveis</h1>
       <ul className="products">
         {items &&
           items.map((item) => (
@@ -33,4 +26,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Search;

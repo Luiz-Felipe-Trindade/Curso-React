@@ -1,4 +1,8 @@
-.products-list h1, p{
+.products-list h1, p, Link{
+    display: flex;
+    justify-content: center;
+}
+.Link {
     display: flex;
     justify-content: center;
 }
