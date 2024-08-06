@@ -1,0 +1,19 @@
+nav a {
+    margin: 20px;
+    padding: 5px 10px;
+    background-color: rgb(102, 102, 102);
+    border-radius: 5px;
+    text-decoration: none;
+    color: white
+}
+
+.active {
+    background-color: rgb(251, 255, 254);
+    color: black
+
+}
+
+nav a:hover{
+    background-color: rgb(54, 53, 53);
+    color: white
+}
