@@ -31,33 +31,33 @@ export const useAuthentication = () => {
     setAuthError(null);
 
     try {
-      const { user } = createUserWithEmailAndPassword(
+      const { user } = await createUserWithEmailAndPassword(
         auth,
         data.email,
         data.password
       );
 
       await updateProfile(user, { displayName: data.displayName });
+      setLoading(false);
 
       return user;
-    } catch (authError) {
-      console.log(authError.message);
-      console.log(typeof authError.message);
+    } catch (error) {
+      console.log(error.message);
+      console.log(typeof error.message);
 
       let systemErrorMessage;
 
-      if (authError.message.includes("Password")) {
+      if (error.message.includes("Password")) {
         systemErrorMessage = "A senha precisa conter pelo menos 6 caracteres.";
-      } else if (authError.message.includes("email-already")) {
+      } else if (error.message.includes("email-already")) {
         systemErrorMessage = "E-mail já cadastrado";
       } else {
         systemErrorMessage = "Ocorreu um erro, por favor tente mais tarde.";
       }
+      setLoading(false);
 
       setAuthError(systemErrorMessage);
     }
-
-    setLoading(false);
   };
 
   useEffect(() => {

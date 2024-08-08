@@ -14,7 +14,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setError("");
+    setError(null);
 
     const user = {
       displayName,
@@ -83,7 +83,13 @@ const Register = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </label>
-        <button className="btn">Cadastrar</button>
+
+        {!loading && <button className="btn">Cadastrar</button>}
+        {loading && (
+          <button className="btn" disabled>
+            Aguarde
+          </button>
+        )}
         {error && <p className="error"> {error}</p>}
       </form>
     </div>
